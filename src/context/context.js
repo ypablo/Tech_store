@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { linkData } from './linkData'
 import {socialData} from './socialData'
+import {items} from './productData'
+
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
@@ -10,8 +12,51 @@ class ProductProvider extends Component {
         cartItems: 0,
         links: linkData,
         socialIcons: socialData,
-        cart: []
+        cart: [],
+        cartSubTotal: 0,
+        cartTax: 0,
+        cartTotal: 0,
+        storeProducts:[],
+        filteredProducts: [],
+        featuredProducts:[],
+        singleProduct: {},
+        loading: false
     }
+
+    componentDidMount() {
+        //from contentful items
+        this.setProducts(items);
+    }
+
+    //set Products
+    setProducts = (products) => {
+        let storeProducts = products.map(item => {
+            const {id} = item.sys;
+            const product = {id, ...item.fields};
+            return product;
+        })
+        //featured products
+        let featuredProducts = storeProducts.filter(item => item.featured === true);
+        this.setState({
+            storeProducts,
+            filteredProducts: storeProducts,
+            featuredProducts,
+            cart: this.getStorageCart(),
+            singleProduct: this.getStorageProduct(),
+            loading: false
+        })
+    }
+
+    getStorageCart = () => {
+        return [];
+    };
+
+    getStorageProduct = () => {
+        return [];
+    };
+
+    getTotals = () => {}
+
     //handle side bar
     handleSidebar = () => {
         this.setState({ sidebarOpen: !this.state.sidebarOpen })
