@@ -30,6 +30,7 @@ export default function Footer() {
 const FooterWrapper = styled.footer`
     background: var(--darkGrey);
     color: var(--mainWhite);
+    border-top: 1px solid var(--mainBlack);
     .icon {
         font-size: 1.5rem;
         color: var(--mainWhite);
