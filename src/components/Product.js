@@ -82,6 +82,6 @@ const ProductWrapper = styled.div`
     .card-body {
         font-weight:bold;
         letter-spacing: 2px;
-        text-transform
+        text-transform: uppercase;
     }
 `
