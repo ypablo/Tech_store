@@ -25,13 +25,6 @@ export default function Product({ product }) {
                                 <p className="mb-0">{product.title}</p>
                                 <p className="mb-0 text-main">${product.price}</p>
                             </div>
-                            <div className="row mt-5">
-                                <div className="col text-center">
-                                    <Link to="/products" className="main-link">
-                                        our products
-                                    </Link>
-                                </div>
-                            </div>
                         </div>
                     </ProductWrapper>
                 )
