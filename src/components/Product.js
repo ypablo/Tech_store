@@ -59,7 +59,7 @@ const ProductWrapper = styled.div`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        /*opacity: 0;*/    
+        opacity: 0;  
     }
     .icon {
         font-size: 2.5rem;

@@ -49,3 +49,7 @@ body {
   outline-color: var(--primaryColor);
   font-weight: bold;
 }
+
+.cart-icon {
+  cursor: pointer;
+}
