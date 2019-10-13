@@ -7,6 +7,14 @@ export default function ProductFilter() {
         <ProductConsumer>
            {value => {
                const {search, min, max, price, shipping, company, handleChange, storeProducts} = value
+               let companies = new Set()
+               companies.add("all")
+               for(let product in storeProducts){
+                   companies.add(storeProducts[product]["company"])
+               }
+
+               companies = [...companies]
+
                return (
                    <div className="row my-5">
                        <div className="col-10 mx-auto">
@@ -20,9 +28,11 @@ export default function ProductFilter() {
                             <div>
                                 <label htmlFor="company">company</label>
                                 <select type="text" name="company" id="company" onChange={handleChange} value={company} className="filter-item">
-                                    <option value="all">all</option>
-                                    <option value="fuji">fuji</option>
-                                    <option value="htc">htc</option>
+                                    {
+                                        companies.map((company, index) => {
+                                            return <option key={index} value={company}>{company}</option>
+                                        })
+                                    }
                                 </select>    
                             </div>
                              {/* price range */}
@@ -35,7 +45,7 @@ export default function ProductFilter() {
                              {/* free shipping */}
                              <div>
                                  <label htmlFor="shipping" className="mx-2">free shipping</label>
-                                 <input type="checkbox" name="shipping" id="shipping" onChange={handleChange} value={shipping && true}/>
+                                 <input type="checkbox" name="shipping" id="shipping" onChange={handleChange} checked={shipping && true}/>
                              </div>    
                         </FilterWrapper> 
                        </div>
